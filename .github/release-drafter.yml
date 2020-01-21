@@ -1,4 +1,6 @@
 categories:
+  - title: '🤯 Highlights'
+    label: 'highlight'
   - title: '🚀 Features'
     labels:
       - 'feature'
