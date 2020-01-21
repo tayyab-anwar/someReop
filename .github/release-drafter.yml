@@ -10,9 +10,9 @@ categories:
       - 'bug'
   - title: '🧰 Maintenance'
     label: 'chore'
-  template: |
-  ## What’s Changed
+template: |
+## What’s Changed
 
-  $CHANGES
+$CHANGES
 
-  # New changes.
+# New changes.
