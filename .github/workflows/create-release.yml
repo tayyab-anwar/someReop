@@ -1,0 +1,20 @@
+name: Release Drafter
+
+on:
+  push:
+    # branches to consider in the event; optional, defaults to all
+    branches:
+      - master
+
+jobs:
+  create_release_branch:
+    steps:
+      - uses: actions/checkout@v2.1.0
+
+      - name: Create Release
+        uses: aaiezza/create-release@master
+        id: create_release
+        with:
+          tag: v123456
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
