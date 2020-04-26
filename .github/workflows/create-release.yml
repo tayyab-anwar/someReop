@@ -22,7 +22,8 @@ jobs:
           TIME: "${{ steps.current-time.outputs.time }}"
           F_TIME: "${{ steps.current-time.outputs.formattedTime }}"
         with:
-          branch: Release-v${F_TIME}
+          branch: Release-v$F_TIME
+          run: echo Release-v$F_TIME
       - uses: actions/checkout@v2.1.0
       - name: Create Release
         uses: aaiezza/create-release@master
