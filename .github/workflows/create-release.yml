@@ -17,7 +17,7 @@ jobs:
           format: YYMMDD
           utcOffset: "+05:00"
       - name: Create Release Branch
-      - uses: peterjgrainger/action-create-branch@v1.0.0
+        uses: peterjgrainger/action-create-branch@v1.0.0
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TIME: "${{ steps.current-time.outputs.time }}"
