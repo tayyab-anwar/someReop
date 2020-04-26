@@ -1,10 +1,8 @@
-name: Create Branch
+name: Create Release Branch
 
 on:
-  push:
-    # branches to consider in the event; optional, defaults to all
-    branches:
-      - master
+  schedule:
+    - cron: '0 23 * * 0'
 
 jobs:
   create_release_branch:
@@ -18,18 +16,18 @@ jobs:
           utcOffset: "+05:00"
       - name: Create Release Branch
         uses: peterjgrainger/action-create-branch@v1.0.0
+        id: create_release_branch
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TIME: "${{ steps.current-time.outputs.time }}"
-          F_TIME: "${{ steps.current-time.outputs.formattedTime }}"
         with:
           branch: 'Release-v${{ steps.current-time.outputs.formattedTime }}'
       - uses: actions/checkout@v2.1.0
-      - name: Create Release
+      - name: Push Tag
         uses: aaiezza/create-release@master
-        id: create_release
+        id: push_tag
         with:
           tag: 'v${{ steps.current-time.outputs.formattedTime }}'
           release_branch: 'Release-v${{ steps.current-time.outputs.formattedTime }}'
+          create_release: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
