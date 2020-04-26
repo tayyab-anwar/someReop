@@ -10,6 +10,11 @@ jobs:
   create_release_branch:
     runs-on: ubuntu-latest
     steps:
+      - uses: peterjgrainger/action-create-branch@v1.0.0
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: 'release-notes'
       - uses: actions/checkout@v2.1.0
       - name: Create Release
         uses: aaiezza/create-release@master
