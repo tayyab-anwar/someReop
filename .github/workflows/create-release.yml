@@ -10,16 +10,25 @@ jobs:
   create_release_branch:
     runs-on: ubuntu-latest
     steps:
+      - name: Get Current Time
+        uses: 1466587594/get-current-time@v1.0.0
+        id: current-time
+        with:
+          format: YYMMDD
+          utcOffset: "+05:00"
       - uses: peterjgrainger/action-create-branch@v1.0.0
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TIME: "${{ steps.current-time.outputs.time }}"
+          F_TIME: "${{ steps.current-time.outputs.formattedTime }}"
         with:
-          branch: 'release-notes'
+          branch: Release-v$F_TIME
       - uses: actions/checkout@v2.1.0
       - name: Create Release
         uses: aaiezza/create-release@master
         id: create_release
         with:
           tag: v123456
+          create_release: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
