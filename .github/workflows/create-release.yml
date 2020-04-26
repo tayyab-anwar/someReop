@@ -21,9 +21,9 @@ jobs:
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TIME: "${{ steps.current-time.outputs.time }}"
-          F_TIME: " ${{ steps.current-time.outputs.formattedTime }}"
+          F_TIME: "${{ steps.current-time.outputs.formattedTime }}"
         with:
-          branch: ${{ "Release-v" + ${{ steps.current-time.outputs.formattedTime }} }}
+          branch: ${{ Release-v + ${{ steps.current-time.outputs.formattedTime }} }}
       - uses: actions/checkout@v2.1.0
       - name: Create Release
         uses: aaiezza/create-release@master
